@@ -68,7 +68,7 @@ export function AboutSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl transform rotate-6"></div>
                 <div className="relative bg-card rounded-2xl overflow-hidden shadow-2xl">
                   <img
-                    src="/professional-developer-portrait.png"
+                    src="/imagem-gabriel-halmenschlager.jpeg"
                     alt="Gabriel Halmenschlager - Desenvolvedor"
                     className="w-full h-full object-cover"
                   />

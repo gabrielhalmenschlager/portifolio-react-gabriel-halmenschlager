@@ -8,17 +8,17 @@ export function Footer() {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com/usuario",
+      href: "https://github.com/gabrielhalmenschlager",
       label: "GitHub",
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/usuario",
+      href: "https://www.linkedin.com/in/gabriel-halmenschlager-2bb312302/",
       label: "LinkedIn",
     },
     {
       icon: Mail,
-      href: "mailto:joao.silva@exemplo.com",
+      href: "mailto:gabrielh2007.scs@gmail.com",
       label: "Email",
     },
   ]
@@ -37,9 +37,9 @@ export function Footer() {
               onClick={scrollToTop}
               className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors duration-200"
             >
-              João Silva
+              Gabriel Halmenschlager
             </button>
-            <p className="text-muted-foreground mt-2">Desenvolvedor Full Stack</p>
+            <p className="text-muted-foreground mt-2">Desenvolvedor Back End</p>
           </div>
 
           {/* Social Links */}
@@ -61,7 +61,7 @@ export function Footer() {
           {/* Copyright */}
           <div className="text-center md:text-right">
             <p className="text-muted-foreground text-sm flex items-center justify-center md:justify-end gap-1">
-              © {currentYear} Feito com <Heart className="h-4 w-4 text-red-500" /> por João Silva
+              © {currentYear} Feito por Gabriel Halmenschlager
             </p>
           </div>
         </div>
