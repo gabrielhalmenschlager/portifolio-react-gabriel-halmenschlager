@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, Download, ExternalLink } from "lucide-react"
+import { Mail, Phone, MapPin, Github, Linkedin, Instagram, Send, Download, ExternalLink } from "lucide-react"
 
 interface GitHubRepo {
   id: number
@@ -38,20 +38,20 @@ export function ContactSection() {
     {
       icon: Mail,
       label: "Email",
-      value: "joao.silva@exemplo.com",
-      href: "mailto:joao.silva@exemplo.com",
+      value: "gabrielh2007.scs@gmail.com",
+      href: "mailto:gabrielh2007.scs@gmail.com",
     },
     {
       icon: Phone,
       label: "Telefone",
-      value: "+55 (21) 99999-9999",
-      href: "tel:+5521999999999",
+      value: "+55 (51) 99540-2759",
+      href: "tel:+5551995565922",
     },
     {
       icon: MapPin,
       label: "Localização",
-      value: "Rio de Janeiro, RJ",
-      href: "https://maps.google.com/?q=Rio+de+Janeiro,RJ",
+      value: "Santa Cruz do Sul, RS",
+      href: "https://www.google.com/maps/place/Santa+Cruz+do+Sul,+RS",
     },
   ]
 
@@ -59,20 +59,20 @@ export function ContactSection() {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com/usuario",
-      username: "@usuario",
+      href: "https://github.com/gabrielhalmenschlager",
+      username: "@gabrielhalmenschlager",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com/in/usuario",
-      username: "/in/usuario",
+      href: "https://www.linkedin.com/in/gabriel-halmenschlager-2bb312302/",
+      username: "/in/gabriel-halmenschlager",
     },
     {
-      icon: Twitter,
-      label: "Twitter",
-      href: "https://twitter.com/usuario",
-      username: "@usuario",
+      icon: Instagram,
+      label: "Instagram",
+      href: "https://www.instagram.com/gabriel_halmenschlager/",
+      username: "@gabriel_halmenschlager",
     },
   ]
 
