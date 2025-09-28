@@ -20,10 +20,9 @@ export function HeroSection() {
   }
 
   const downloadCV = () => {
-    // Simular download do CV
     const link = document.createElement("a")
-    link.href = "/cv-desenvolvedor.pdf"
-    link.download = "CV-Desenvolvedor.pdf"
+    link.href = "/cv-gabriel-halmenschlager.pdf"
+    link.download = "CV-Gabriel-Halmenschlager.pdf"
     link.click()
   }
 
@@ -49,15 +48,17 @@ export function HeroSection() {
           </div>
 
           {/* Name */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-balance">Gabriel Halmenschlager</h1>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-balance">
+            Gabriel Halmenschlager
+          </h1>
 
           {/* Typewriter Effect */}
           <div className="mb-8 h-16 flex items-center justify-center">
             <TypewriterEffect
               words={[
-                "Desenvolvedor Full Stack",
-                "Especialista em React",
-                "Criador de Experiências",
+                "Desenvolvedor Back-End",
+                ".NET & C# Specialist",
+                "Full Stack Developer",
                 "Apaixonado por Tecnologia",
               ]}
               className="text-xl sm:text-2xl lg:text-3xl text-primary font-medium"
@@ -66,8 +67,8 @@ export function HeroSection() {
 
           {/* Description */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 text-pretty leading-relaxed">
-            Construindo interfaces modernas e experiências digitais excepcionais. Especializado em React, Next.js e
-            tecnologias web avançadas.
+            Desenvolvedor back-end com foco em .NET, C#, PHP e bancos de dados. Também atuo no front-end com React e
+            tecnologias modernas, criando soluções completas e eficientes para empresas e projetos.
           </p>
 
           {/* CTA Buttons */}
@@ -95,7 +96,7 @@ export function HeroSection() {
           {/* Social Links */}
           <div className="flex justify-center space-x-6">
             <a
-              href="https://github.com"
+              href="https://github.com/GabrielHalmenschlager"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
@@ -104,7 +105,7 @@ export function HeroSection() {
               <span className="sr-only">GitHub</span>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/gabriel-halmenschlager"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
@@ -113,7 +114,7 @@ export function HeroSection() {
               <span className="sr-only">LinkedIn</span>
             </a>
             <a
-              href="mailto:joao@exemplo.com"
+              href="mailto:gabrielh2007.scs@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors duration-200 hover:scale-110 transform"
             >
               <Mail className="h-6 w-6" />

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code, Palette, Zap, Users } from "lucide-react"
+import { Code, Database, GitBranch, Server } from "lucide-react"
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -29,23 +29,23 @@ export function AboutSection() {
   const specialties = [
     {
       icon: Code,
-      title: "Desenvolvimento",
-      description: "Criação de aplicações web modernas com foco em performance e usabilidade.",
+      title: "Back-End",
+      description: "APIs em .NET e C#, com boas práticas de organização e padrões como MVC e DDD.",
     },
     {
-      icon: Palette,
-      title: "Design",
-      description: "Interfaces intuitivas que combinam estética e funcionalidade.",
+      icon: Database,
+      title: "Bancos de Dados",
+      description: "Modelagem e consultas em MySQL e SQL Server para aplicações reais.",
     },
     {
-      icon: Zap,
-      title: "Performance",
-      description: "Otimização de aplicações para máxima velocidade e eficiência.",
+      icon: Server,
+      title: "APIs & Integrações",
+      description: "Criação e testes de APIs REST com Postman, versionamento no GitHub.",
     },
     {
-      icon: Users,
-      title: "Colaboração",
-      description: "Trabalho em equipe e comunicação efetiva em projetos complexos.",
+      icon: GitBranch,
+      title: "Aprendizado Contínuo",
+      description: "Explorando PHP, Python e Django para ampliar o repertório como desenvolvedor.",
     },
   ]
 
@@ -78,27 +78,36 @@ export function AboutSection() {
 
             {/* About Content */}
             <div className="space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Desenvolvedor Full Stack apaixonado por tecnologia
-                </h3>
-                <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                  Com mais de 5 anos de experiência em desenvolvimento web, especializo-me em criar soluções digitais
-                  inovadoras que combinam design excepcional com código limpo e eficiente.
-                </p>
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  Minha jornada começou com curiosidade sobre como as coisas funcionam na web, e hoje trabalho com as
-                  mais modernas tecnologias para transformar ideias em realidade digital.
-                </p>
-              </div>
+            <h3 className="text-2xl font-bold text-foreground mb-4">Sobre Mim</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Sou estudante de <strong>Tecnologia da Informação no SENAC</strong> e estou iniciando minha trajetória como desenvolvedor, explorando tanto o <strong>back-end</strong> quanto o <strong>front-end</strong>. Tenho verdadeiro interesse por tecnologia e gosto de compreender como os sistemas funcionam por trás, garantindo soluções eficientes e experiências de usuário de qualidade.
+              </p>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Atualmente, foco meus estudos e prática em <strong>.NET e C#</strong>, e também exploro ferramentas de <strong>front-end</strong> como <strong>React, Next.js e Tailwind CSS</strong>. Já desenvolvi APIs, trabalhei com bancos de dados <strong>MySQL e SQL Server</strong> e utilizei ferramentas como <strong>Postman, Git e GitHub</strong> para versionamento e testes.
+              </p>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Busco aplicar <strong>boas práticas de desenvolvimento</strong> e aprimorar meu conhecimento em <strong>arquitetura e padrões de software</strong>, com o objetivo de criar soluções organizadas, escaláveis e eficientes. Estou em busca da minha primeira oportunidade profissional para aprender com uma equipe experiente, contribuir de forma significativa e crescer junto com o time.
+              </p>
 
               {/* Key Areas */}
               <div>
-                <h4 className="text-xl font-semibold text-foreground mb-4">Áreas de Atuação</h4>
+                <h4 className="text-xl font-semibold text-foreground mb-4">Tecnologias e Ferramentas</h4>
                 <div className="flex flex-wrap gap-2">
-                  {["Frontend", "Backend", "UI/UX", "Mobile", "DevOps", "Consultoria"].map((area) => (
-                    <Badge key={area} variant="secondary" className="text-sm">
-                      {area}
+                  {[
+                    ".NET",
+                    "C#",
+                    "PHP",
+                    "Python",
+                    "Django",
+                    "JavaScript",
+                    "TypeScript",
+                    "React",
+                    "Next.js",
+                    "Tailwind CSS",
+
+                  ].map((tech) => (
+                    <Badge key={tech} variant="secondary" className="text-sm">
+                      {tech}
                     </Badge>
                   ))}
                 </div>
