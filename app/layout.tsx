@@ -8,25 +8,25 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "João Silva - Desenvolvedor Full Stack | Portfólio",
+  title: "Gabriel Halmenschlager - Desenvolvedor Back-End | Portfólio",
   description:
-    "Portfólio interativo de João Silva, desenvolvedor full stack especializado em React, Next.js e tecnologias modernas. Veja meus projetos, habilidades e experiência.",
-  keywords: "desenvolvedor, full stack, react, nextjs, typescript, portfolio, web developer",
-  authors: [{ name: "João Silva" }],
-  creator: "João Silva",
+    "Portfólio interativo de Gabriel Halmenschlager, desenvolvedor back-end especializado em .NET, C#, PHP, React e tecnologias modernas. Veja meus projetos, habilidades e experiência.",
+  keywords: "desenvolvedor, back-end, .NET, C#, PHP, React, SQL, portfolio, web developer",
+  authors: [{ name: "Gabriel Halmenschlager" }],
+  creator: "Gabriel Halmenschlager",
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://joaosilva.dev",
-    title: "João Silva - Desenvolvedor Full Stack",
-    description: "Portfólio interativo com projetos, habilidades e experiência em desenvolvimento web",
-    siteName: "João Silva Portfolio",
+    url: "https://gabrielhalm.dev",
+    title: "Gabriel Halmenschlager - Desenvolvedor Back-End",
+    description: "Portfólio interativo com projetos, habilidades e experiência em desenvolvimento back-end e web",
+    siteName: "Gabriel Halmenschlager Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "João Silva - Desenvolvedor Full Stack",
-    description: "Portfólio interativo com projetos, habilidades e experiência em desenvolvimento web",
-    creator: "@usuario",
+    title: "Gabriel Halmenschlager - Desenvolvedor Back-End",
+    description: "Portfólio interativo com projetos, habilidades e experiência em desenvolvimento back-end e web",
+    creator: "@gabrielhalm",
   },
   robots: {
     index: true,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   verification: {
     google: "google-site-verification-code",
   },
-    generator: 'v0.app'
+  generator: "v0.app",
 }
 
 export default function RootLayout({
