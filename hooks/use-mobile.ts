@@ -1,3 +1,5 @@
+"use client" // ESSENCIAL para Next.js Client Component
+
 import * as React from 'react'
 
 const MOBILE_BREAKPOINT = 768
@@ -6,14 +8,28 @@ export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
 
   React.useEffect(() => {
+    // Protege contra execução no servidor
+    if (typeof window === 'undefined') return
+
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+
+    const onChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(e.matches)
     }
-    mql.addEventListener('change', onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener('change', onChange)
+
+    // Inicializa
+    setIsMobile(mql.matches)
+
+    // Adiciona listener compatível com browsers modernos e antigos
+    if (mql.addEventListener) {
+      mql.addEventListener('change', onChange)
+      return () => mql.removeEventListener('change', onChange)
+    } else {
+      mql.addListener(onChange)
+      return () => mql.removeListener(onChange)
+    }
   }, [])
 
+  // Converte undefined para boolean
   return !!isMobile
 }

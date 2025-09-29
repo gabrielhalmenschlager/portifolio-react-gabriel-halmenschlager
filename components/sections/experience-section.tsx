@@ -20,7 +20,6 @@ interface Experience {
 
 export function ExperienceSection() {
   const [isVisible, setIsVisible] = useState(false)
-  const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set())
   const sectionRef = useRef<HTMLElement>(null)
 
   const experiences: Experience[] = [
@@ -114,29 +113,14 @@ export function ExperienceSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
-      { threshold: 0.3 },
+      { threshold: 0.3 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
-
-  useEffect(() => {
-    if (isVisible) {
-      experiences.forEach((exp, index) => {
-        setTimeout(() => {
-          setVisibleItems((prev) => new Set([...prev, exp.id]))
-        }, index * 200)
-      })
-    }
-  }, [isVisible])
 
   return (
     <section id="experience" ref={sectionRef} className="py-20">
@@ -146,7 +130,7 @@ export function ExperienceSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          {/* Section Header */}
+          {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
               Experiência & Educação
@@ -159,10 +143,8 @@ export function ExperienceSection() {
 
           {/* Timeline */}
           <div className="relative">
-            {/* Timeline Line */}
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border transform md:-translate-x-0.5"></div>
 
-            {/* Timeline Items */}
             <div className="space-y-12">
               {experiences.map((exp, index) => (
                 <div
@@ -170,17 +152,18 @@ export function ExperienceSection() {
                   className={`relative flex items-center ${
                     index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   } transition-all duration-700 ${
-                    visibleItems.has(exp.id)
+                    isVisible
                       ? "opacity-100 translate-x-0"
                       : `opacity-0 ${index % 2 === 0 ? "-translate-x-10" : "translate-x-10"}`
                   }`}
+                  style={{ transitionDelay: `${index * 0.2}s` }}
                 >
-                  {/* Timeline Dot */}
+                  {/* Dot */}
                   <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background transform -translate-x-2 md:-translate-x-2 z-10">
                     <div className="absolute inset-0 bg-primary rounded-full animate-ping opacity-20"></div>
                   </div>
 
-                  {/* Content Card */}
+                  {/* Card */}
                   <div className={`w-full md:w-5/12 ml-12 md:ml-0 ${index % 2 === 0 ? "md:mr-8" : "md:ml-8"}`}>
                     <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50">
                       <CardContent className="p-6">
@@ -201,7 +184,6 @@ export function ExperienceSection() {
                         <h3 className="text-xl font-bold text-foreground mb-2">{exp.title}</h3>
                         <h4 className="text-lg font-semibold text-primary mb-3">{exp.company}</h4>
 
-                        {/* Meta Info */}
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4 text-sm text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
@@ -213,23 +195,22 @@ export function ExperienceSection() {
                           </div>
                         </div>
 
-                        {/* Description */}
                         <p className="text-muted-foreground mb-4 leading-relaxed">{exp.description}</p>
 
-                        {/* Achievements */}
-                        <div className="mb-4">
-                          <h5 className="font-semibold text-foreground mb-2">Principais conquistas:</h5>
-                          <ul className="space-y-1">
-                            {exp.achievements.map((achievement, i) => (
-                              <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                                <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                                <span>{achievement}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                        {exp.achievements.length > 0 && (
+                          <div className="mb-4">
+                            <h5 className="font-semibold text-foreground mb-2">Principais conquistas:</h5>
+                            <ul className="space-y-1">
+                              {exp.achievements.map((ach, i) => (
+                                <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                                  <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
+                                  <span>{ach}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
 
-                        {/* Technologies */}
                         {exp.technologies && (
                           <div>
                             <h5 className="font-semibold text-foreground mb-2">Tecnologias:</h5>
@@ -246,7 +227,7 @@ export function ExperienceSection() {
                     </Card>
                   </div>
 
-                  {/* Period Badge (Desktop) */}
+                  {/* Period Badge */}
                   <div
                     className={`hidden md:block absolute top-6 ${
                       index % 2 === 0 ? "right-4" : "left-4"
@@ -259,7 +240,7 @@ export function ExperienceSection() {
             </div>
           </div>
 
-          {/* Summary Stats */}
+          {/* Stats */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { number: "5+", label: "Anos de Experiência" },
@@ -269,11 +250,8 @@ export function ExperienceSection() {
             ].map((stat, index) => (
               <div
                 key={stat.label}
-                className="transition-all duration-700"
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                  animation: isVisible ? "fadeInUp 0.8s ease-out forwards" : "none",
-                }}
+                className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                style={{ transitionDelay: `${index * 0.1}s` }}
               >
                 <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
