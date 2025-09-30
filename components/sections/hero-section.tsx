@@ -67,9 +67,10 @@ export function HeroSection() {
 
           {/* Description */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 text-pretty leading-relaxed">
-            Desenvolvedor back-end com foco em .NET, C#, PHP e bancos de dados. Também atuo no front-end com React e
-            tecnologias modernas, criando soluções completas e eficientes para empresas e projetos.
+            Desenvolvedor em início de carreira, estudante de TI no SENAC, com foco em <strong>.NET e C#</strong> e experiência com PHP, Python, Django, React e Node.js.  
+            Crio projetos pessoais e soluções para pequenas empresas, entregando sistemas funcionais e eficientes.
           </p>
+
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">

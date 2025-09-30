@@ -30,7 +30,7 @@ export function AboutSection() {
     {
       icon: Code,
       title: "Back-End",
-      description: "APIs em .NET e C#, com boas práticas de organização e padrões como MVC e DDD.",
+      description: "Desenvolvimento com .NET e C#, APIs e boas práticas como MVC e DDD.",
     },
     {
       icon: Database,
@@ -40,12 +40,12 @@ export function AboutSection() {
     {
       icon: Server,
       title: "APIs & Integrações",
-      description: "Criação e testes de APIs REST com Postman, versionamento no GitHub.",
+      description: "Criação, testes e documentação de APIs REST com Postman, GitHub e Swagger.",
     },
     {
       icon: GitBranch,
       title: "Aprendizado Contínuo",
-      description: "Explorando PHP, Python e Django para ampliar o repertório como desenvolvedor.",
+      description: "Explorando PHP, Python, Django e front-end moderno com React, Next.js e Tailwind CSS.",
     },
   ]
 
@@ -78,15 +78,15 @@ export function AboutSection() {
 
             {/* About Content */}
             <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Sobre Mim</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-4">Quem Sou</h3>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Sou estudante de <strong>Tecnologia da Informação no SENAC</strong> e estou iniciando minha trajetória como desenvolvedor, explorando tanto o <strong>back-end</strong> quanto o <strong>front-end</strong>. Tenho verdadeiro interesse por tecnologia e gosto de compreender como os sistemas funcionam por trás, garantindo soluções eficientes e experiências de usuário de qualidade.
+                Sou estudante de <strong>Tecnologia da Informação no SENAC</strong> e desenvolvedor em início de carreira, com foco em <strong>.NET e C#</strong>. Tenho interesse por tecnologia e gosto de entender como os sistemas funcionam por trás das telas, criando soluções eficientes e escaláveis.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Atualmente, foco meus estudos e prática em <strong>.NET e C#</strong>, e também exploro ferramentas de <strong>front-end</strong> como <strong>React, Next.js e Tailwind CSS</strong>. Já desenvolvi APIs, trabalhei com bancos de dados <strong>MySQL e SQL Server</strong> e utilizei ferramentas como <strong>Postman, Git e GitHub</strong> para versionamento e testes.
+                Também estudo e aplico outras linguagens como PHP, Python e Django, além de front-end moderno com <strong>React, Next.js, Node.js e Tailwind CSS</strong>. Já desenvolvi APIs, trabalhei com bancos de dados <strong>MySQL e SQL Server</strong> e utilizei ferramentas como <strong>Postman, Swagger, Git e GitHub</strong>.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Busco aplicar <strong>boas práticas de desenvolvimento</strong> e aprimorar meu conhecimento em <strong>arquitetura e padrões de software</strong>, com o objetivo de criar soluções organizadas, escaláveis e eficientes. Estou em busca da minha primeira oportunidade profissional para aprender com uma equipe experiente, contribuir de forma significativa e crescer junto com o time.
+                Atualmente, crio projetos pessoais e soluções para pequenas empresas, aplicando boas práticas de desenvolvimento, padrões de software e arquitetura para entregar aplicações organizadas, funcionais e de qualidade. Busco minha primeira oportunidade profissional para aprender com uma equipe experiente e evoluir junto com o time.
               </p>
 
               {/* Key Areas */}
@@ -103,8 +103,14 @@ export function AboutSection() {
                     "TypeScript",
                     "React",
                     "Next.js",
+                    "Node.js",
                     "Tailwind CSS",
-
+                    "MySQL",
+                    "SQL Server",
+                    "Postman",
+                    "Swagger",
+                    "Git",
+                    "GitHub",
                   ].map((tech) => (
                     <Badge key={tech} variant="secondary" className="text-sm">
                       {tech}

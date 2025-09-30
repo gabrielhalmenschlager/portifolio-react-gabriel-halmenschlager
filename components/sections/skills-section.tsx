@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
@@ -32,11 +31,10 @@ export function SkillsSection() {
       icon: Code2,
       color: "text-blue-500",
       skills: [
-        { name: "React", level: 95, category: "frontend" },
-        { name: "Next.js", level: 90, category: "frontend" },
-        { name: "TypeScript", level: 88, category: "frontend" },
-        { name: "Tailwind CSS", level: 92, category: "frontend" },
-        { name: "Vue.js", level: 75, category: "frontend" },
+        { name: "React", level: 60, category: "frontend" },
+        { name: "Next.js", level: 50, category: "frontend" },
+        { name: "TypeScript", level: 30, category: "frontend" },
+        { name: "Tailwind CSS", level: 40, category: "frontend" },
       ],
     },
     {
@@ -44,11 +42,12 @@ export function SkillsSection() {
       icon: Database,
       color: "text-green-500",
       skills: [
-        { name: "Node.js", level: 85, category: "backend" },
-        { name: "Python", level: 80, category: "backend" },
-        { name: "PostgreSQL", level: 82, category: "backend" },
-        { name: "MongoDB", level: 78, category: "backend" },
-        { name: "GraphQL", level: 75, category: "backend" },
+        { name: ".NET & C#", level: 70, category: "backend" },
+        { name: "Node.js", level: 50, category: "backend" },
+        { name: "PHP", level: 60, category: "backend" },
+        { name: "Python", level: 50, category: "backend" },
+        { name: "MySQL", level: 80, category: "backend" },
+        { name: "SQL Server", level: 75, category: "backend" },
       ],
     },
     {
@@ -56,38 +55,42 @@ export function SkillsSection() {
       icon: Palette,
       color: "text-purple-500",
       skills: [
-        { name: "Figma", level: 88, category: "design" },
-        { name: "UI/UX", level: 85, category: "design" },
-        { name: "Adobe XD", level: 70, category: "design" },
-        { name: "Prototyping", level: 82, category: "design" },
+        { name: "Figma", level: 60, category: "design" },
+        { name: "UI/UX", level: 75, category: "design" },
       ],
     },
     {
-      title: "DevOps",
+      title: "DevOps & Ferramentas",
       icon: Cloud,
       color: "text-orange-500",
       skills: [
-        { name: "Docker", level: 80, category: "devops" },
-        { name: "AWS", level: 75, category: "devops" },
-        { name: "Vercel", level: 90, category: "devops" },
-        { name: "CI/CD", level: 78, category: "devops" },
+        { name: "Git", level: 85, category: "devops" },
+        { name: "GitHub", level: 85, category: "devops" },
+        { name: "Postman", level: 80, category: "devops" },
       ],
     },
   ]
 
   const tools = [
     "VS Code",
+    "VS 2022",
+    ".NET",
+    "C#",
+    "PHP",
+    "Python",
+    "Django",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Tailwind CSS",
+    "MySQL",
+    "SQL Server",
+    "Postman",
+    "Swagger",
     "Git",
     "GitHub",
-    "Postman",
-    "Slack",
-    "Notion",
-    "Linear",
-    "Jira",
-    "Chrome DevTools",
-    "Webpack",
-    "Vite",
-    "ESLint",
   ]
 
   useEffect(() => {
@@ -95,7 +98,6 @@ export function SkillsSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
-          // Animate skill bars
           skillCategories.forEach((category) => {
             category.skills.forEach((skill) => {
               setTimeout(() => {
@@ -103,7 +105,7 @@ export function SkillsSection() {
                   ...prev,
                   [skill.name]: skill.level,
                 }))
-              }, Math.random() * 1000)
+              }, Math.random() * 800)
             })
           })
         }
@@ -111,21 +113,14 @@ export function SkillsSection() {
       { threshold: 0.3 },
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
   return (
     <section id="skills" ref={sectionRef} className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={`transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
+        <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
@@ -133,7 +128,7 @@ export function SkillsSection() {
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Tecnologias e ferramentas que domino para criar soluções digitais excepcionais
+              Tecnologias e ferramentas que aplico para construir soluções web completas
             </p>
           </div>
 
@@ -172,42 +167,19 @@ export function SkillsSection() {
           <div className="text-center">
             <h3 className="text-2xl font-bold text-foreground mb-8">Ferramentas & Tecnologias</h3>
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-              {tools.map((tool, index) => (
-                <Badge
-                  key={tool}
-                  variant="secondary"
-                  className="text-sm py-2 px-4 hover:bg-primary hover:text-primary-foreground transition-colors duration-200 cursor-default"
-                  style={{
-                    animationDelay: `${index * 0.05}s`,
-                    animation: isVisible ? "fadeInUp 0.6s ease-out forwards" : "none",
-                  }}
-                >
-                  {tool}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: "50+", label: "Projetos Concluídos" },
-              { number: "5+", label: "Anos de Experiência" },
-              { number: "20+", label: "Tecnologias Dominadas" },
-              { number: "100%", label: "Satisfação do Cliente" },
-            ].map((stat, index) => (
-              <div
-                key={stat.label}
-                className="text-center"
+            {tools.map((tool, index) => (
+              <Badge
+                key={tool}
+                variant="secondary"
+                className="text-sm py-2 px-4 hover:bg-primary hover:text-primary-foreground transition-colors duration-200 cursor-default"
                 style={{
-                  animationDelay: `${index * 0.1}s`,
-                  animation: isVisible ? "fadeInUp 0.8s ease-out forwards" : "none",
+                  animation: isVisible ? `fadeInUp 0.6s ease-out forwards ${index * 0.05}s` : "none",
                 }}
               >
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
+                {tool}
+              </Badge>
             ))}
+            </div>
           </div>
         </div>
       </div>
