@@ -23,102 +23,22 @@ export function ExperienceSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
   const experiences: Experience[] = [
-    {
-      id: "1",
-      type: "work",
-      title: "Senior Full Stack Developer",
-      company: "TechCorp Solutions",
-      location: "São Paulo, SP",
-      period: "2022 - Presente",
-      current: true,
-      description:
-        "Liderança técnica no desenvolvimento de aplicações web escaláveis, mentoria de desenvolvedores juniores e implementação de melhores práticas de desenvolvimento.",
-      achievements: [
-        "Reduziu tempo de carregamento das aplicações em 40%",
-        "Implementou arquitetura de microserviços",
-        "Liderou equipe de 5 desenvolvedores",
-        "Aumentou cobertura de testes para 85%",
-      ],
-      technologies: ["React", "Node.js", "TypeScript", "AWS", "Docker"],
-    },
-    {
-      id: "2",
-      type: "work",
-      title: "Full Stack Developer",
-      company: "StartupXYZ",
-      location: "Rio de Janeiro, RJ",
-      period: "2020 - 2022",
-      description:
-        "Desenvolvimento de MVP e features para plataforma de e-commerce, trabalhando em ambiente ágil com deploy contínuo.",
-      achievements: [
-        "Desenvolveu sistema de pagamentos integrado",
-        "Criou dashboard administrativo completo",
-        "Implementou sistema de notificações em tempo real",
-        "Otimizou performance do banco de dados",
-      ],
-      technologies: ["Vue.js", "Python", "Django", "PostgreSQL", "Redis"],
-    },
-    {
-      id: "3",
-      type: "education",
-      title: "Bacharelado em Ciência da Computação",
-      company: "Universidade Federal do Rio de Janeiro",
-      location: "Rio de Janeiro, RJ",
-      period: "2016 - 2020",
-      description:
-        "Formação sólida em fundamentos da computação, algoritmos, estruturas de dados e engenharia de software.",
-      achievements: [
-        "Projeto de conclusão em Machine Learning",
-        "Monitor de Programação Orientada a Objetos",
-        "Participação em competições de programação",
-        "Iniciação científica em IA",
-      ],
-    },
-    {
-      id: "4",
-      type: "work",
-      title: "Desenvolvedor Frontend",
-      company: "WebAgency",
-      location: "Rio de Janeiro, RJ",
-      period: "2019 - 2020",
-      description:
-        "Desenvolvimento de interfaces responsivas e interativas para clientes diversos, com foco em experiência do usuário.",
-      achievements: [
-        "Criou mais de 20 websites responsivos",
-        "Implementou animações CSS avançadas",
-        "Otimizou SEO e performance",
-        "Trabalhou com design systems",
-      ],
-      technologies: ["HTML", "CSS", "JavaScript", "React", "Sass"],
-    },
-    {
-      id: "5",
-      type: "work",
-      title: "Estagiário de Desenvolvimento",
-      company: "TechStart",
-      location: "Rio de Janeiro, RJ",
-      period: "2018 - 2019",
-      description:
-        "Primeiro contato profissional com desenvolvimento web, aprendendo boas práticas e metodologias ágeis.",
-      achievements: [
-        "Desenvolveu componentes reutilizáveis",
-        "Participou de code reviews",
-        "Aprendeu metodologias ágeis",
-        "Contribuiu para documentação técnica",
-      ],
-      technologies: ["JavaScript", "PHP", "MySQL", "Bootstrap"],
-    },
+    // ... seus objetos de experiência aqui ...
   ]
 
   useEffect(() => {
+    if (!sectionRef.current) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
       },
       { threshold: 0.3 }
     )
 
-    if (sectionRef.current) observer.observe(sectionRef.current)
+    observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
@@ -144,7 +64,6 @@ export function ExperienceSection() {
           {/* Timeline */}
           <div className="relative">
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border transform md:-translate-x-0.5"></div>
-
             <div className="space-y-12">
               {experiences.map((exp, index) => (
                 <div

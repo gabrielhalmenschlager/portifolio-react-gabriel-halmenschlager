@@ -23,7 +23,32 @@ export function ProjectsSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
+  const [hasMounted, setHasMounted] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!hasMounted) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { root: null, rootMargin: "0px", threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [hasMounted])
 
   const projects: Project[] = [
     {
@@ -116,22 +141,7 @@ export function ProjectsSection() {
   const filteredProjects =
     selectedCategory === "all" ? projects : projects.filter((p) => p.category === selectedCategory)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.3 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  if (!hasMounted) return null
 
   return (
     <section id="projects" ref={sectionRef} className="py-20 bg-muted/30">
@@ -146,7 +156,7 @@ export function ProjectsSection() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
               Meus Projetos
             </h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
+            <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-pretty">
               Uma seleção dos meus trabalhos mais recentes e impactantes
             </p>
@@ -181,23 +191,23 @@ export function ProjectsSection() {
                     onMouseEnter={() => setHoveredProject(project.id)}
                     onMouseLeave={() => setHoveredProject(null)}
                   >
-                    <div className="relative overflow-hidden">
+                    <div className="relative overflow-hidden w-full h-64 md:h-56">
                       <img
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
-                        className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="flex gap-4">
+                        <div className="flex gap-2 md:gap-4 flex-wrap justify-center">
                           <Button size="sm" variant="secondary" asChild>
                             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <Eye className="h-4 w-4 mr-2" />
+                              <Eye className="h-4 w-4 mr-1 md:mr-2" />
                               Ver Demo
                             </a>
                           </Button>
                           <Button size="sm" variant="outline" asChild>
                             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                              <Github className="h-4 w-4 mr-2" />
+                              <Github className="h-4 w-4 mr-1 md:mr-2" />
                               Código
                             </a>
                           </Button>
@@ -216,10 +226,10 @@ export function ProjectsSection() {
                           </Badge>
                         ))}
                       </div>
-                      <div className="flex gap-4">
-                        <Button size="sm" variant="outline" asChild className="flex-1 bg-transparent">
+                      <div className="flex gap-4 flex-wrap">
+                        <Button size="sm" variant="outline" asChild className="flex-1">
                           <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4 mr-2" />
+                            <ExternalLink className="h-4 w-4 mr-1 md:mr-2" />
                             Ver Projeto
                           </a>
                         </Button>
@@ -245,11 +255,11 @@ export function ProjectsSection() {
                   className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-border/50"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden w-full h-48 md:h-56">
                     <img
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
-                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute top-4 right-4">
                       <Badge variant="secondary" className="text-xs">
@@ -272,10 +282,10 @@ export function ProjectsSection() {
                         </Badge>
                       )}
                     </div>
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline" asChild className="flex-1 bg-transparent">
+                    <div className="flex gap-2 flex-wrap">
+                      <Button size="sm" variant="outline" asChild className="flex-1">
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-3 w-3 mr-2" />
+                          <ExternalLink className="h-3 w-3 mr-1 md:mr-2" />
                           Demo
                         </a>
                       </Button>

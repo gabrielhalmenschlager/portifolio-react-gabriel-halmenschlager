@@ -1,4 +1,4 @@
-"use client" // ESSENCIAL para Next.js Client Component
+"use client"
 
 import * as React from 'react'
 

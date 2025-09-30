@@ -7,16 +7,28 @@ import { Code, Database, GitBranch, Server } from "lucide-react"
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const [hasMounted, setHasMounted] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!hasMounted) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
+          observer.disconnect() // dispara apenas uma vez
         }
       },
-      { threshold: 0.3 },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.2, // dispara antes de estar totalmente visível
+      }
     )
 
     if (sectionRef.current) {
@@ -24,7 +36,7 @@ export function AboutSection() {
     }
 
     return () => observer.disconnect()
-  }, [])
+  }, [hasMounted])
 
   const specialties = [
     {
@@ -49,22 +61,28 @@ export function AboutSection() {
     },
   ]
 
+  if (!hasMounted) return null // evita SSR
+
   return (
     <section id="about" ref={sectionRef} className="py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
         >
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">Sobre Mim</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
+              Sobre Mim
+            </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Profile Image */}
-            <div className="relative">
-              <div className="aspect-square max-w-md mx-auto relative">
+            <div className="relative w-full max-w-md mx-auto">
+              <div className="aspect-square relative w-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl transform rotate-6"></div>
                 <div className="relative bg-card rounded-2xl overflow-hidden shadow-2xl">
                   <img
@@ -123,7 +141,9 @@ export function AboutSection() {
 
           {/* Specialties Grid */}
           <div className="mt-20">
-            <h3 className="text-2xl font-bold text-foreground text-center mb-12">Minhas Especialidades</h3>
+            <h3 className="text-2xl font-bold text-foreground text-center mb-12">
+              Minhas Especialidades
+            </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {specialties.map((specialty, index) => (
                 <Card
