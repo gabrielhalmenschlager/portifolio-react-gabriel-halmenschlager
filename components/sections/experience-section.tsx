@@ -23,8 +23,86 @@ export function ExperienceSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
   const experiences: Experience[] = [
-    // ... seus objetos de experiência aqui ...
+    {
+      id: "1",
+      type: "education",
+      title: "Ensino Médio - 3º Ano",
+      company: "Escola Estadual de Educação Básica Estado de Goiás",
+      location: "Santa Cruz do Sul, RS",
+      period: "2023 - Atual",
+      description:
+        "Atualmente cursando o terceiro ano do ensino médio, com foco em desenvolvimento acadêmico e preparação para a área de tecnologia.",
+      achievements: [
+        "Participação em projetos escolares de tecnologia",
+        "Atividades em grupo voltadas para pesquisa e inovação",
+        "Destaque em disciplinas de matemática e informática",
+      ],
+      current: true,
+    },
+    {
+      id: "2",
+      type: "education",
+      title: "Lógica de Programação",
+      company: "Senac RS",
+      location: "Santa Cruz do Sul, RS",
+      period: "Set 2023 - Nov 2023",
+      description:
+        "Curso introdutório em lógica de programação aplicada ao desenvolvimento web.",
+      achievements: [
+        "Fundamentos de programação",
+        "Resolução de problemas",
+        "Construção de pequenos projetos práticos",
+      ],
+      technologies: ["HTML", "CSS", "JavaScript"],
+    },   
+    {
+      id: "3",
+      type: "education",
+      title: "Letras - Língua Inglesa e Literaturas",
+      company: "Wizard by Pearson",
+      location: "Santa Cruz do Sul, RS",
+      period: "2022 - 2026",
+      description:
+        "Curso de inglês avançado com foco em comunicação, literatura e desenvolvimento de oratória.",
+      achievements: [
+        "Melhoria na comunicação e apresentação",
+        "Fluência em inglês",
+        "Experiência em atividades educacionais"
+      ],
+      technologies: ["Inglês", "Comunicação", "Oratória"],
+      current: true,
+    },
+    {
+      id: "4",
+      type: "education",
+      title: "Curso Técnico em Tecnologia da Informação",
+      company: "Senac RS",
+      location: "Santa Cruz do Sul, RS",
+      period: "2024 - 2026",
+      description:
+        "Atualmente cursando o Técnico em Tecnologia da Informação no SENAC Santa Cruz do Sul, com foco em desenvolvimento Back-End utilizando .NET e C#. Durante a formação, adquiri experiência prática em desenvolvimento web, bancos de dados, criação e documentação de APIs, além de controle de versionamento com Git e GitHub. Busco aplicar o conhecimento adquirido em projetos reais, construindo soluções eficientes e escaláveis.",
+      achievements: [
+        "Desenvolvimento de aplicações web",
+        "Planejamento e execução de projetos de TI",
+        "Manutenção e montagem de computadores",
+        "Segurança e boas práticas em redes"
+      ],
+      technologies: [
+        "C#", ".NET", "PHP", "Python", "Django",
+        "HTML5", "CSS", "JavaScript",
+        "MySQL", "SQL Server",
+        "Postman", "Swagger",
+        "Git", "GitHub",
+        "Arquitetura MVC",
+        "Redes de Computadores",
+        "Manutenção de Computadores",
+        "Configuração de Servidores"
+      ],
+      current: true,
+    }    
   ]
+  
+  
 
   useEffect(() => {
     if (!sectionRef.current) return
@@ -162,14 +240,16 @@ export function ExperienceSection() {
           {/* Stats */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: "5+", label: "Anos de Experiência" },
-              { number: "4", label: "Empresas" },
-              { number: "15+", label: "Tecnologias" },
-              { number: "1", label: "Graduação" },
+              { number: "2+", label: "Anos de Estudos em TI" },
+              { number: "14", label: "Formações / Cursos" },
+              { number: "20+", label: "Tecnologias e Ferramentas" },
+              { number: "1", label: "Experiência Profissional" },
             ].map((stat, index) => (
               <div
                 key={stat.label}
-                className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                className={`transition-all duration-700 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
                 <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
