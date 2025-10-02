@@ -27,7 +27,13 @@ export function HeroSection() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen relative overflow-hidden
+                 flex flex-col justify-center
+                 pt-24 sm:pt-32 lg:pt-40
+                 pb-16 sm:pb-20"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20" />
@@ -70,7 +76,6 @@ export function HeroSection() {
             Desenvolvedor em início de carreira, estudante de TI no SENAC, com foco em <strong>.NET e C#</strong> e experiência com PHP, Python, Django, React e Node.js.  
             Crio projetos pessoais e soluções para pequenas empresas, entregando sistemas funcionais e eficientes.
           </p>
-
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">

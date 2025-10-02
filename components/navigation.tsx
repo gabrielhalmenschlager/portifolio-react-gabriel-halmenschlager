@@ -43,7 +43,11 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <span className="text-xl font-bold text-primary">Portfolio</span>
+            <img 
+              src="/logo2.png" // coloque o caminho da sua logo
+              alt="Logo GH" 
+              className="h-10 w-auto" // ajusta altura e mantém proporção
+            />
           </div>
 
           {/* Desktop Navigation */}

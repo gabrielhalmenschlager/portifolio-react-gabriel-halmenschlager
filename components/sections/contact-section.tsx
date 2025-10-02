@@ -1,38 +1,23 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
-import { useToast } from "@/hooks/use-toast"
 import { Mail, Phone, MapPin, Github, Linkedin, Instagram, Send, Download, ExternalLink } from "lucide-react"
-
-interface GitHubRepo {
-  id: number
-  name: string
-  description: string
-  html_url: string
-  language: string
-  stargazers_count: number
-  updated_at: string
-}
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>([])
+  const sectionRef = useRef<HTMLElement>(null)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   })
-  const sectionRef = useRef<HTMLElement>(null)
-  const { toast } = useToast()
 
   const contactInfo = [
     {
@@ -44,7 +29,7 @@ export function ContactSection() {
     {
       icon: Phone,
       label: "Telefone",
-      value: "+55 (51) 99540-2759",
+      value: "+55 (51) 99556-5922",
       href: "tel:+5551995565922",
     },
     {
@@ -76,46 +61,11 @@ export function ContactSection() {
     },
   ]
 
-  // Simular dados do GitHub (em produção, usar API real)
-  const mockGithubRepos: GitHubRepo[] = [
-    {
-      id: 1,
-      name: "portfolio-website",
-      description: "Meu portfólio pessoal desenvolvido com Next.js e Tailwind CSS",
-      html_url: "https://github.com/usuario/portfolio-website",
-      language: "TypeScript",
-      stargazers_count: 24,
-      updated_at: "2024-01-15T10:30:00Z",
-    },
-    {
-      id: 2,
-      name: "ecommerce-platform",
-      description: "Plataforma de e-commerce completa com React e Node.js",
-      html_url: "https://github.com/usuario/ecommerce-platform",
-      language: "JavaScript",
-      stargazers_count: 18,
-      updated_at: "2024-01-10T14:20:00Z",
-    },
-    {
-      id: 3,
-      name: "task-manager-app",
-      description: "Aplicativo de gerenciamento de tarefas com colaboração em tempo real",
-      html_url: "https://github.com/usuario/task-manager-app",
-      language: "TypeScript",
-      stargazers_count: 31,
-      updated_at: "2024-01-08T09:15:00Z",
-    },
-  ]
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
-          // Simular carregamento dos repositórios do GitHub
-          setTimeout(() => {
-            setGithubRepos(mockGithubRepos)
-          }, 500)
         }
       },
       { threshold: 0.3 },
@@ -133,42 +83,16 @@ export function ContactSection() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simular envio do formulário
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      toast({
-        title: "Mensagem enviada!",
-        description: "Obrigado pelo contato. Responderei em breve!",
-      })
-
-      setFormData({ name: "", email: "", subject: "", message: "" })
-    } catch (error) {
-      toast({
-        title: "Erro ao enviar",
-        description: "Tente novamente ou entre em contato diretamente por email.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const downloadCV = () => {
-    // Simular download do CV
-    const link = document.createElement("a")
-    link.href = "/cv-joao-silva.pdf"
-    link.download = "CV-Joao-Silva.pdf"
-    link.click()
-
-    toast({
-      title: "Download iniciado",
-      description: "O CV está sendo baixado...",
-    })
+    const phone = "5551995565922" // Número atualizado
+    const name = formData.name.trim()
+    const email = formData.email.trim()
+    const subject = formData.subject.trim()
+    const message = formData.message.trim()
+    const text = `Olá, meu nome é ${name} (${email}).\nAssunto: ${subject}\n\n${message}`
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
+    window.open(url, "_blank")
   }
 
   return (
@@ -267,20 +191,10 @@ export function ContactSection() {
                     <Button
                       type="submit"
                       size="lg"
-                      disabled={isSubmitting}
                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                     >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
-                          Enviando...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="h-4 w-4 mr-2" />
-                          Enviar Mensagem
-                        </>
-                      )}
+                      <Send className="h-4 w-4 mr-2" />
+                      Enviar Mensagem pelo WhatsApp
                     </Button>
                   </form>
                 </CardContent>
@@ -343,67 +257,6 @@ export function ContactSection() {
                   ))}
                 </CardContent>
               </Card>
-
-              {/* Download CV */}
-              <Card className="border-border/50">
-                <CardContent className="p-6">
-                  <Button onClick={downloadCV} variant="outline" size="lg" className="w-full bg-transparent">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download CV
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* GitHub Activity */}
-          <div className="mt-20">
-            <h3 className="text-2xl font-bold text-foreground text-center mb-12">Atividade Recente no GitHub</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {githubRepos.map((repo, index) => (
-                <Card
-                  key={repo.id}
-                  className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50"
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                    animation: isVisible ? "fadeInUp 0.6s ease-out forwards" : "none",
-                  }}
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
-                        {repo.name}
-                      </h4>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <span>⭐</span>
-                        <span>{repo.stargazers_count}</span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{repo.description}</p>
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="text-xs">
-                        {repo.language}
-                      </Badge>
-                      <a
-                        href={repo.html_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary hover:text-primary/80 transition-colors duration-200"
-                      >
-                        <Github className="h-4 w-4" />
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <Button variant="outline" asChild>
-                <a href="https://github.com/usuario" target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4 mr-2" />
-                  Ver todos os repositórios
-                </a>
-              </Button>
             </div>
           </div>
         </div>
