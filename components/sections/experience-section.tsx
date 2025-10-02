@@ -29,7 +29,7 @@ export function ExperienceSection() {
       title: "Ensino Médio - 3º Ano",
       company: "Escola Estadual de Educação Básica Estado de Goiás",
       location: "Santa Cruz do Sul, RS",
-      period: "2023 - Atual",
+      period: "2013 - Atual",
       description: "Cursando o 3º ano do ensino médio, focado em tecnologia.",
       achievements: ["Projetos escolares de tecnologia", "Atividades em grupo", "Destaque em matemática e informática"],
       current: true,
@@ -44,19 +44,31 @@ export function ExperienceSection() {
       description: "Curso introdutório em lógica de programação web.",
       achievements: ["Fundamentos de programação", "Resolução de problemas", "Pequenos projetos práticos"],
       technologies: ["HTML", "CSS", "JavaScript"],
-    },   
+    },
     {
       id: "3",
+      type: "education",
+      title: "Letras - Língua Inglesa e Literaturas",
+      company: "Wizard by Pearson",
+      location: "Santa Cruz do Sul, RS",
+      period: "2022 - 2026",
+      description: "Curso de inglês avançado com foco em comunicação, literatura e desenvolvimento de oratória.",
+      achievements: ["Melhoria na comunicação e apresentação", "Fluência em inglês", "Experiência em atividades educacionais"],
+      technologies: ["Inglês", "Comunicação", "Oratória"],
+      current: true,
+    },
+    {
+      id: "4",
       type: "education",
       title: "Curso Técnico em TI",
       company: "Senac RS",
       location: "Santa Cruz do Sul, RS",
       period: "2024 - 2026",
-      description: "Técnico em TI com foco em Back-End (.NET, C#) e desenvolvimento web.",
-      achievements: ["Desenvolvimento web", "Projetos de TI", "Manutenção de computadores"],
+      description: "Técnico em TI com foco em Back-End (.NET, C#) e desenvolvimento web. Experiência prática com bancos de dados, APIs, Git e GitHub.",
+      achievements: ["Desenvolvimento web", "Projetos de TI", "Manutenção de computadores", "Segurança de redes"],
       technologies: ["C#", ".NET", "PHP", "Python", "Django", "HTML5", "CSS", "JS", "MySQL", "Git"],
       current: true,
-    }    
+    }
   ]
 
   useEffect(() => {
@@ -92,7 +104,11 @@ export function ExperienceSection() {
               <Card key={exp.id} className="group hover:shadow-lg transition-all duration-300 border-border/50">
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center justify-between mb-2">
-                    {exp.type === "work" ? <Building className="h-4 w-4 text-primary" /> : <GraduationCap className="h-4 w-4 text-primary" />}
+                    {exp.type === "work" ? (
+                      <Building className="h-4 w-4 text-primary" />
+                    ) : (
+                      <GraduationCap className="h-4 w-4 text-primary" />
+                    )}
                     <Badge variant={exp.current ? "default" : "secondary"} className="text-xs">
                       {exp.current ? "Atual" : exp.type === "work" ? "Trabalho" : "Educação"}
                     </Badge>
